@@ -1,0 +1,40 @@
+.QuoteBox {
+    padding: 25px;
+    max-width: 400px;
+    max-height: 300px;
+    border-radius: 6px;
+    background-color: white;
+    color: var(--theme-color);
+    transition: var(--els-transition);
+}
+
+blockquote {
+    font-size: 20px;
+}
+
+address{
+    text-align: right;
+}
+img {
+    width: 30px;
+ height: auto;
+}
+.buttons{
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+button{
+    border: none;
+    border-radius: 2px;
+    box-sizing: content-box;
+    padding: 5px 15px;
+    background-color: var(--theme-color);
+    transition: var(--els-transition);
+}
+button:focus{
+    outline: none;
+}
+.quote-btn{
+    color: white;
+}

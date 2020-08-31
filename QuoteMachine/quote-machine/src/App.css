@@ -1,0 +1,13 @@
+.App {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+:root {
+    --els-transition: all 2s;
+    --theme-color: rgb(122, 200, 102);
+    background: var(--theme-color);
+    transition: var(--els-transition);
+}
+
