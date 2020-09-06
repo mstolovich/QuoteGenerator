@@ -1,77 +1,97 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+
 import axios from 'axios';
 import './QuoteBox.css';
-
-
+import MagicRainbowButton from "../MagicRainbowButton/index";
 
 const QuoteBox = () => {
   const [allQuotes, setAllQuotes] = useState({})
-  const [quote, setQuote] = useState({text: 'Tih udert frestip aclimbin gou', author:'Laxsetuv'})
+  const [quote, setQuote] = useState({})
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setisError] = useState(false)
-
-
   
-  const randomColor = () => '#'+(Math.random()*0xFFFFFF<<0).toString(16);
-  const randomNum = () =>  Math.round(Math.random() * allQuotes.quotes.length);
+  const randomColor = () => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+  const randomNum = (length) =>  Math.round(Math.random() * length);
 
-  const handleClick = async () =>{
+  const handleClick = () =>{
     const color = randomColor()
     document.documentElement.style.setProperty('background', color)
     document.documentElement.style.setProperty('--theme-color', color)
-    console.log('random: ', randomNum())
-    setQuote(allQuotes.quotes[randomNum()])
-    console.log(quote)
-    console.log()
+    
+    setQuote(allQuotes.quotes[randomNum(allQuotes.quotes.length)])
+
   }
 
 useEffect(() => {
     async function getData () {
       setisError(false);
       setIsLoading(true);
+      let result;
       try {
-        const result = await axios('https://type.fit/api/quotes')
-
+        result = await axios('https://type.fit/api/quotes')
+        console.log(result);
         setAllQuotes({quotes: result.data})
+        
       } catch(error) {
         setisError(true);
       }
 
       setIsLoading(false); 
+      return result.data
     };
 
-    getData()
- 
-  }, []) 
+    let qts = getData()
 
+    async function setQts (data) {
+      console.log('1', data)
+      data = await data
+      console.log(2, data)
+      setQuote(data[randomNum(data.length)])
+    }
 
+    setQts(qts)
     
-  return(
-    
-  <div className="QuoteBox">
-    {isError && <div>Something went wrong ...</div>}
-    {console.log('render', allQuotes)}
+}, []) 
 
-    {isLoading ? (<div> Loading </div>) :
-    (<div>
-    <blockquote>{quote.text}</blockquote>
-    <address>{quote.author}</address>
-    <div className='buttons'>
+  return (
+    <div className="QuoteBox">
+      {isError && <div>Something went wrong ...</div>}
 
-    <button className="tweet-btn"><img src='./tweeter.png' alt="mypic"/></button> 
-    <button className="quote-btn" onClick={handleClick}>New quote</button>
+      {isLoading ? (
+        <div> Loading </div>
+      ) : (
+        <div>
+          <div className="quote">
+            <blockquote>{quote.text}</blockquote>
+            <address>- {quote.author}</address>
+          </div>
+          <div className="buttons">
+            <a
+              href={`https://twitter.com/intent/tweet?hashtags=quotes&text='${quote.text} ${quote.author}'`}
+              target="_blank"
+            >
+              <div id="twit-btn">
+                <img src="./tweeter.png" alt="twitter" />
+              </div>
+            </a>
+            <MagicRainbowButton
+              id="quote-btn"
+              onClick={handleClick}
+              children={<p>New Quote</p>}
+            />
+          </div>
+        </div>
+      )}
     </div>
-    </div>
-    )}
-  </div>
-    
-  )
+  );
 }
 
-
-QuoteBox.propTypes = {};
-
-QuoteBox.defaultProps = {};
 
 export default QuoteBox;

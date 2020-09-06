@@ -1,30 +1,41 @@
 .QuoteBox {
     padding: 25px;
     max-width: 400px;
-    max-height: 300px;
     border-radius: 6px;
     background-color: white;
     color: var(--theme-color);
     transition: var(--els-transition);
+    margin-top: 0.5vh;
+}
+
+.quote {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 blockquote {
-    font-size: 20px;
+    font-size: 5vh;
+    font-weight: 500;
 }
 
 address{
-    text-align: right;
+    font-size: 1.2rem;
 }
+
 img {
     width: 30px;
- height: auto;
+    height: auto;
 }
+
 .buttons{
+    padding: 1rem;
     margin-top: 15px;
     display: flex;
     justify-content: space-between;
 }
-button{
+
+.tweet-btn, .quote-btn {
     border: none;
     border-radius: 2px;
     box-sizing: content-box;
@@ -32,9 +43,23 @@ button{
     background-color: var(--theme-color);
     transition: var(--els-transition);
 }
+
+#twit-btn {
+    height: auto;
+    border: none;
+    border-radius: 2px;
+    padding: 10px 20px 10px 20px;
+    background-color: var(--theme-color);
+    transition: var(--els-transition);
+}
+
+#quote-btn {
+    padding: 2px 20px;
+    font-weight: 800;
+}
+
+
 button:focus{
     outline: none;
 }
-.quote-btn{
-    color: white;
-}
+
