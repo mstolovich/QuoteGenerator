@@ -6,6 +6,7 @@
     color: var(--theme-color);
     transition: var(--els-transition);
     margin-top: 0.5vh;
+   
 }
 
 .quote {
@@ -15,7 +16,7 @@
 }
 
 blockquote {
-    font-size: 5vh;
+    font-size: 3vh;
     font-weight: 500;
 }
 
