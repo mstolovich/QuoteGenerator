@@ -36,7 +36,6 @@ useEffect(() => {
       let result;
       try {
         result = await axios('https://type.fit/api/quotes')
-        console.log(result);
         setAllQuotes({quotes: result.data})
         
       } catch(error) {
@@ -50,9 +49,7 @@ useEffect(() => {
     let qts = getData()
 
     async function setQts (data) {
-      console.log('1', data)
       data = await data
-      console.log(2, data)
       setQuote(data[randomNum(data.length)])
     }
 
