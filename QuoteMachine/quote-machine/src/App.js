@@ -1,12 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import './App.css';
+import "./App.css";
 
-import  QuoteBox  from "./components/QuoteBox/QuoteBox";
-
+import QuoteBox from "./components/QuoteBox/QuoteBox";
 
 function App() {
-
   return (
     <div className="App">
       <QuoteBox />
