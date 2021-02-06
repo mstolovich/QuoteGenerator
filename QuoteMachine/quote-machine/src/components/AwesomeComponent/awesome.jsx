@@ -1,4 +1,5 @@
-import { React } from "react";
+
+import React, { useState } from "react";
 
 const AwesomeComponent = (props) => {
   const [todos, setToDos] = useState([
